@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs'
+import { Place } from '../place';
 import { WeatherService } from '../weather.service';
 
 @Component({
@@ -17,15 +18,15 @@ export class LocationInputComponent implements OnInit {
   constructor(private weatherService: WeatherService) {}
 
   location = new FormControl('Prague')
-  options: { title: string; woeid: number}[] = [];
+  options: Place[] = [];
 
   getLocations(): void {
     this.weatherService.getLocations(this.location.value).subscribe(
       
       locations => {
         this.options = locations.map(
-          ( one: { title: string; woeid: number}) => {
-            return {title : one.title, woeid: one.woeid}
+          ( one: Place) => {
+            return one
           }
         )
       }
@@ -41,7 +42,7 @@ export class LocationInputComponent implements OnInit {
     )
   }
 
-  locationTitle(location: { title: string; woeid: number}): string {
+  locationTitle(location: Place): string {
     return location.title;
   }
 
