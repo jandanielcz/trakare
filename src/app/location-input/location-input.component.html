@@ -1,0 +1,17 @@
+<label>
+    Location:
+    <mat-form-field>
+    <input type="text"
+        placeholder="Start typing"
+        aria-label="Location"
+        matInput
+        [formControl]="location"
+        [matAutocomplete]="auto"
+        >
+    </mat-form-field>
+  </label>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="loadWeather($event)">
+    <mat-option *ngFor="let option of options" [value]="option.title" [id]="option.woeid.toString()">
+      {{option.title}}
+    </mat-option>
+  </mat-autocomplete>
