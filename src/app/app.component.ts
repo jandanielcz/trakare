@@ -12,7 +12,6 @@ export class AppComponent {
 
   constructor(private weatherService: WeatherService) {}
 
-  title = 'trakare';
   selectedLocation?: Place;
   loadedForecast?: Forecast;
   isWeatherLoading: boolean = false;
@@ -29,7 +28,6 @@ export class AppComponent {
     this.isWeatherLoading = true;
     this.weatherService.getWeather(this.selectedLocation.woeid).subscribe(
       data => {
-        console.log(data)
         this.isWeatherLoading = false;
         this.loadedForecast = data
       }

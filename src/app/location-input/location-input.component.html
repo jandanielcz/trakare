@@ -2,7 +2,6 @@
     Location:
     <mat-form-field>
     <input type="text"
-        placeholder="Start typing"
         aria-label="Location"
         matInput
         [formControl]="location"
@@ -10,7 +9,7 @@
         >
     </mat-form-field>
   </label>
-  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="loadWeather($event)">
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectPlace($event)">
     <mat-option *ngFor="let place of places" [value]="place.title" [id]="place.woeid.toString()">
       {{place.title}}
     </mat-option>

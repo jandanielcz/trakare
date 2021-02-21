@@ -22,24 +22,17 @@ export class LocationInputComponent implements OnInit {
 
   getLocations(): void {
     this.weatherService.getLocations(this.location.value).subscribe(
-      
       locations => {
-        this.places = locations.map(
-          ( one: Place) => {
-            return one
-          }
-        )
+        this.places = locations
       }
     )
   }
 
-  loadWeather(event: MatAutocompleteSelectedEvent): void {
+  selectPlace(event: MatAutocompleteSelectedEvent): void {
     let p = new Place();
     p.title = event.option.value;
     p.woeid = parseInt(event.option.id);
     this.updateParent(p);
-    console.log(event)
-    
   }
 
   locationTitle(location: Place): string {
