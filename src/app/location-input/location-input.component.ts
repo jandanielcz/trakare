@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs'
+import { debounceTime} from 'rxjs/operators';
 import { Place } from '../place';
 import { WeatherService } from '../weather.service';
 
@@ -46,7 +47,7 @@ export class LocationInputComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLocations();
-    this.location.valueChanges.subscribe(()=>{this.getLocations()})
+    this.location.valueChanges.pipe(debounceTime(400)).subscribe(()=>{this.getLocations()})
   }
 
 }
