@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs'
@@ -18,13 +18,13 @@ export class LocationInputComponent implements OnInit {
   constructor(private weatherService: WeatherService) {}
 
   location = new FormControl('Prague')
-  options: Place[] = [];
+  places: Place[] = [];
 
   getLocations(): void {
     this.weatherService.getLocations(this.location.value).subscribe(
       
       locations => {
-        this.options = locations.map(
+        this.places = locations.map(
           ( one: Place) => {
             return one
           }
@@ -34,16 +34,21 @@ export class LocationInputComponent implements OnInit {
   }
 
   loadWeather(event: MatAutocompleteSelectedEvent): void {
+    let p = new Place();
+    p.title = event.option.value;
+    p.woeid = parseInt(event.option.id);
+    this.updateParent(p);
     console.log(event)
-    this.weatherService.getWeather(event.option.id).subscribe(
-      stuff => {
-        console.log(stuff)
-      }
-    )
+    
   }
 
   locationTitle(location: Place): string {
     return location.title;
+  }
+
+  @Output() setLocation: EventEmitter<Place> = new EventEmitter<Place>();
+  updateParent(location: Place){
+    this.setLocation.emit(location)
   }
 
   ngOnInit(): void {

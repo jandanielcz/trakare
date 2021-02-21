@@ -11,7 +11,8 @@
     </mat-form-field>
   </label>
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="loadWeather($event)">
-    <mat-option *ngFor="let option of options" [value]="option.title" [id]="option.woeid.toString()">
-      {{option.title}}
+    <mat-option *ngFor="let place of places" [value]="place.title" [id]="place.woeid.toString()">
+      {{place.title}}
     </mat-option>
   </mat-autocomplete>
+  

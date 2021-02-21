@@ -1,0 +1,23 @@
+.forecastBox {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+
+    .mat-card > div {
+        
+        text-align: center;
+    }
+
+    .date {
+        font-size: 1.2rem;
+    }
+
+    .temp {
+        font-size: 1.6rem;
+        margin: 1rem 0;
+    }
+
+    
+}

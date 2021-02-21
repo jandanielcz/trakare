@@ -1,0 +1,7 @@
+<div class="forecastBox" *ngIf="forecast && forecast.consolidated_weather && forecast.consolidated_weather.length > 0">
+    <mat-card *ngFor="let oneDay of forecast.consolidated_weather">
+        <div class="date">{{oneDay.applicable_date | date}}</div>
+        <div class="temp">{{oneDay.the_temp | number:'0.1-1' }}&deg;C</div>
+        <div class="state">{{oneDay.weather_state_name}}</div>
+    </mat-card>
+</div>

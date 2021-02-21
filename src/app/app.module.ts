@@ -10,12 +10,19 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule }  from '@angular/forms';
 import { LocationInputComponent } from './location-input/location-input.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LocationInfoComponent } from './location-info/location-info.component';
+import { ForecastComponent } from './forecast/forecast.component'; 
+import {MatCardModule} from '@angular/material/card';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    LocationInputComponent
+    LocationInputComponent,
+    LocationInfoComponent,
+    ForecastComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +33,8 @@ import { HttpClientModule } from '@angular/common/http'
     MatInputModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatProgressSpinnerModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

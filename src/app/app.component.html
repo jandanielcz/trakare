@@ -305,10 +305,11 @@
   
 
   <!-- Resources -->
-  <h1>Trakare</h1>
-  <p>Please do fill your location or location of anybody else:</p>
-  <app-location-input></app-location-input>
-  
+  <app-location-info [place]="selectedLocation"></app-location-info>
+  <p class="leading">Please do fill your location or location of anybody else:</p>
+  <app-location-input (setLocation)="setLocation($event)"></app-location-input>
+  <mat-spinner *ngIf="this.isWeatherLoading"></mat-spinner>
+  <app-forecast [forecast]=loadedForecast></app-forecast>
   
 
   <!-- Footer -->
